@@ -1,5 +1,3 @@
-from typing import Callable
-
 # screen settings
 WIDTH: float = 1600
 HEIGHT: float = 900
