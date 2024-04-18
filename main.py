@@ -1,9 +1,11 @@
 import pygame as pg
+from input_handler import InputHandler
+from settings import EVENT_HANDLERS
 
 
 class Game:
     def __init__(self):
-        pass
+        self.input_handler = InputHandler(EVENT_HANDLERS)
 
     def draw(self):
         pass
@@ -20,4 +22,3 @@ class Game:
 if __name__ == '__main__':
     game = Game()
     game.main_loop()
-
