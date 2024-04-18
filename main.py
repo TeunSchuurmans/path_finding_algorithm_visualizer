@@ -1,26 +1,35 @@
+import sys
+from typing import Callable
 import pygame as pg
 from input_handler import InputHandler
-from settings import EVENT_HANDLERS, RES, FPS
+from settings import RES, FPS
 
 
 class Game:
+    EVENT_HANDLERS: dict[int, Callable] = {}
+
     def __init__(self):
         self.screen = pg.display.set_mode(RES)
         self.clock = pg.time.Clock()
-        self.input_handler = InputHandler(EVENT_HANDLERS)
+        self.input_handler = InputHandler(Game.EVENT_HANDLERS)
         pg.display.set_caption("Pathfinding visualizer")
 
-    def draw(self):
+    def draw(self) -> None:
         pass
 
-    def update(self):
+    def update(self) -> None:
         self.input_handler.check_events()
 
-    def main_loop(self):
+    def main_loop(self) -> None:
         while True:
             self.update()
             self.draw()
             self.clock.tick(FPS)
+
+    @staticmethod
+    def quit() -> None:
+        pg.quit()
+        sys.exit()
 
 
 if __name__ == '__main__':
