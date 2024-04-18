@@ -6,4 +6,3 @@ HEIGHT: float = 900
 RES: tuple[float, float] = WIDTH, HEIGHT
 FPS: float = 144
 
-EVENT_HANDLERS: dict[int, Callable] = {}
