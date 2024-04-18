@@ -1,11 +1,14 @@
 import pygame as pg
 from input_handler import InputHandler
-from settings import EVENT_HANDLERS
+from settings import EVENT_HANDLERS, RES, FPS
 
 
 class Game:
     def __init__(self):
+        self.screen = pg.display.set_mode(RES)
+        self.clock = pg.time.Clock()
         self.input_handler = InputHandler(EVENT_HANDLERS)
+        pg.display.set_caption("Pathfinding visualizer")
 
     def draw(self):
         pass
@@ -17,6 +20,7 @@ class Game:
         while True:
             self.update()
             self.draw()
+            self.clock.tick(FPS)
 
 
 if __name__ == '__main__':
