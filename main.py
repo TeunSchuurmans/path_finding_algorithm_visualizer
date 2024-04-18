@@ -11,7 +11,7 @@ class Game:
         pass
 
     def update(self):
-        pass
+        self.input_handler.check_events()
 
     def main_loop(self):
         while True:
