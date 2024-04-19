@@ -6,7 +6,7 @@ from settings import RES, FPS
 
 
 class Game:
-    EVENT_HANDLERS: dict[int, Callable] = {}
+    EVENT_HANDLERS: dict[tuple[int, int], Callable] = {}
 
     def __init__(self):
         self.screen = pg.display.set_mode(RES)
