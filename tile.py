@@ -1,11 +1,10 @@
 from settings import STATE_COLORS, TILE_SIZE
-from grid import Grid
 from pygame import draw
 
 
 class Tile:
-    def __init__(self, col: int, row: int, grid: Grid) -> None:
-        self.grid: Grid = grid
+    def __init__(self, col: int, row: int, grid) -> None:
+        self.grid = grid
         self.col: int = col
         self.row: int = row
         self.state: str = 'empty'
@@ -24,6 +23,9 @@ class Tile:
 
     def change_state(self, state: str) -> None:
         self.state = state
+
+    def update_prev_state(self) -> None:
+        self.prev_state = self.state
 
     def on_tapped(self) -> None:
         pass

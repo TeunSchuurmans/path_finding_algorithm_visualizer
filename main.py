@@ -17,10 +17,12 @@ class Game:
         self.grid: Grid = Grid(self)
 
     def draw(self) -> None:
-        pass
+        self.grid.draw()
+        pg.display.flip()
 
     def update(self) -> None:
         self.input_handler.check_events()
+        self.grid.update()
 
     def main_loop(self) -> None:
         while True:

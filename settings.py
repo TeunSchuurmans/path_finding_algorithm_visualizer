@@ -5,11 +5,13 @@ RES: tuple[float, float] = WIDTH, HEIGHT
 FPS: float = 144
 
 # grid settings
-NUM_ROWS: int = 40
-NUM_COLUMNS: int = 40
+GRID_WIDTH: float = WIDTH
+GRID_HEIGHT: float = HEIGHT
+NUM_ROWS: int = 14
+NUM_COLUMNS: int = 9
 
 # tile settings
-TILE_SIZE: tuple[int, int] = 20, 20
+TILE_SIZE: tuple[int, int] = (100, 100)
 
 # color settings
 STATE_COLORS: dict[str, tuple[int, int, int]] = {
