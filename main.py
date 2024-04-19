@@ -3,16 +3,18 @@ from typing import Callable
 import pygame as pg
 from input_handler import InputHandler
 from settings import RES, FPS
+from grid import Grid
 
 
 class Game:
     EVENT_HANDLERS: dict[tuple[int, int], Callable] = {}
 
     def __init__(self):
-        self.screen = pg.display.set_mode(RES)
-        self.clock = pg.time.Clock()
-        self.input_handler = InputHandler(Game.EVENT_HANDLERS)
+        self.screen: pg.Surface = pg.display.set_mode(RES)
+        self.clock: pg.time.Clock = pg.time.Clock()
+        self.input_handler: InputHandler = InputHandler(Game.EVENT_HANDLERS)
         pg.display.set_caption("Pathfinding visualizer")
+        self.grid: Grid = Grid(self)
 
     def draw(self) -> None:
         pass
