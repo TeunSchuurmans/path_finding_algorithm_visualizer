@@ -7,6 +7,7 @@ class Tile:
         self.grid = grid
         self.col: int = col
         self.row: int = row
+        self.pos: tuple = ()
         self.state: str = 'empty'
         self.prev_state: str = 'unassigned'
 
@@ -18,8 +19,13 @@ class Tile:
         pass
 
     def draw(self) -> None:
-        rectangle: tuple[int, int, int, int] = (self.col * TILE_SIZE[0], self.row * TILE_SIZE[1], TILE_SIZE[0], TILE_SIZE[1])
-        draw.rect(self.grid.surface, self.color, rectangle)
+        tile_rect: tuple[int, int, int, int] = (self.col * TILE_SIZE, self.row * TILE_SIZE, TILE_SIZE, TILE_SIZE)
+        draw.rect(self.grid.surface, self.color, tile_rect)
+
+        # Draw the border
+        border_color: tuple[int, int, int] = (0, 0, 0)
+        border_width: int = 1
+        draw.rect(self.grid.surface, border_color, tile_rect, border_width)
 
     def change_state(self, state: str) -> None:
         self.state = state

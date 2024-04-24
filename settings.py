@@ -1,17 +1,18 @@
+from math import ceil
+
 # screen settings
-WIDTH: float = 1600
-HEIGHT: float = 900
+WIDTH: float = 1000
+HEIGHT: float = 600
 RES: tuple[float, float] = WIDTH, HEIGHT
 FPS: float = 144
 
-# grid settings
-GRID_WIDTH: float = WIDTH
-GRID_HEIGHT: float = HEIGHT
-NUM_ROWS: int = 14
-NUM_COLUMNS: int = 9
+# grid and tile settings
+GRID_HEIGHT = HEIGHT * 0.85
+GRID_WIDTH = WIDTH
+NUM_ROWS = 40
+TILE_SIZE: int = int(GRID_HEIGHT / NUM_ROWS)
+NUM_COLUMNS: int = ceil(GRID_WIDTH / TILE_SIZE)
 
-# tile settings
-TILE_SIZE: tuple[int, int] = (100, 100)
 
 # color settings
 STATE_COLORS: dict[str, tuple[int, int, int]] = {

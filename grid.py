@@ -6,7 +6,7 @@ from pygame import Surface
 class Grid:
     def __init__(self, game) -> None:
         self.game = game
-        self.tiles = {(col, row): Tile(col, row, self) for col in range(NUM_COLUMNS) for row in range(NUM_ROWS)}
+        self.tiles = {(col, row): Tile(col=col, row=row, grid=self) for col in range(NUM_COLUMNS) for row in range(NUM_ROWS)}
         self.surface = Surface(RES)
 
     def update(self) -> None:
