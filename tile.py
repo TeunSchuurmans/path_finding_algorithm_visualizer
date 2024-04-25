@@ -3,11 +3,12 @@ from pygame import draw
 
 
 class Tile:
-    def __init__(self, col: int, row: int, grid) -> None:
+    def __init__(self, pos: tuple, grid) -> None:
+        """
+        :param grid: the parent Grid object
+        """
+        self.pos = self.x, self.y = pos
         self.grid = grid
-        self.col: int = col
-        self.row: int = row
-        self.pos: tuple = ()
         self.state: str = 'empty'
         self.prev_state: str = 'unassigned'
 
@@ -19,10 +20,8 @@ class Tile:
         pass
 
     def draw(self) -> None:
-        tile_rect: tuple[int, int, int, int] = (self.col * TILE_SIZE, self.row * TILE_SIZE, TILE_SIZE, TILE_SIZE)
+        tile_rect: tuple[int, int, int, int] = (self.x, self.y, TILE_SIZE, TILE_SIZE)
         draw.rect(self.grid.surface, self.color, tile_rect)
-
-        # Draw the border
         border_color: tuple[int, int, int] = (0, 0, 0)
         border_width: int = 1
         draw.rect(self.grid.surface, border_color, tile_rect, border_width)
@@ -33,5 +32,11 @@ class Tile:
     def update_prev_state(self) -> None:
         self.prev_state = self.state
 
-    def on_tapped(self) -> None:
-        pass
+    def on_tapped(self, state: str) -> None:
+        self.change_state(state)
+        if state == 'start':
+            self.grid.tiles[self.grid.start].state = 'empty'
+            self.grid.start = (self.x // TILE_SIZE, self.y // TILE_SIZE)
+        elif state == 'end':
+            self.grid.tiles[self.grid.end].state = 'empty'
+            self.grid.end = (self.x // TILE_SIZE, self.y // TILE_SIZE)
