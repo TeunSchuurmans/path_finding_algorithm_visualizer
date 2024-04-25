@@ -17,7 +17,7 @@ class Tile:
         return STATE_COLORS[self.state]
 
     def update(self) -> None:
-        pass
+        self.draw()
 
     def draw(self) -> None:
         tile_rect: tuple[int, int, int, int] = (self.x, self.y, TILE_SIZE, TILE_SIZE)
@@ -35,8 +35,10 @@ class Tile:
     def on_tapped(self, state: str) -> None:
         self.change_state(state)
         if state == 'start':
-            self.grid.tiles[self.grid.start].state = 'empty'
+            if self.grid.start != (-1, -1):
+                self.grid.tiles[self.grid.start].state = 'empty'
             self.grid.start = (self.x // TILE_SIZE, self.y // TILE_SIZE)
         elif state == 'end':
-            self.grid.tiles[self.grid.end].state = 'empty'
+            if self.grid.end != (-1, -1):
+                self.grid.tiles[self.grid.end].state = 'empty'
             self.grid.end = (self.x // TILE_SIZE, self.y // TILE_SIZE)

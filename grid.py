@@ -27,5 +27,5 @@ class Grid:
     def check_tiles_state(self) -> None:
         for tile in self.tiles.values():
             if tile.state != tile.prev_state:
-                tile.draw()
+                tile.update()
                 tile.update_prev_state()
