@@ -1,6 +1,6 @@
 from typing import Callable
 import pygame as pg
-from settings import GRID_WIDTH, GRID_HEIGHT, TILE_SIZE
+from settings import GRID_WIDTH, GRID_HEIGHT, TILE_SIZE, DASHBOARD_HEIGHT, DASHBOARD_WIDTH
 
 
 class InputHandler:
@@ -23,12 +23,24 @@ class InputHandler:
         """
         Handle the MOUSEBUTTONDOWN event.
         """
+
         button_down_position: tuple[int, int] = pg.mouse.get_pos()
         grid_surface: tuple[float, float, float, float] = (0, 0, GRID_WIDTH, GRID_HEIGHT)
+        dashboard_surface: tuple[float, float, float, float] = (0, GRID_HEIGHT, DASHBOARD_WIDTH, DASHBOARD_HEIGHT)
+
+        # Grid tile handling
         if self.is_on_surface(button_down_position, grid_surface):
             index: tuple[int, int] = InputHandler.pos_to_index(button_down_position)
             if index in self.game.grid.tiles:
-                self.game.grid.tiles[index].on_tapped('start')
+                self.game.grid.tiles[index].on_tapped(self.game.dashboard.state)
+
+        # Dashboard button handling
+        elif self.is_on_surface(button_down_position, dashboard_surface):
+            relative_position: tuple[float, float] = (button_down_position[0] - dashboard_surface[0], button_down_position[1] - dashboard_surface[1])
+            for button in self.game.dashboard.buttons:
+                if self.is_on_surface(relative_position, button.rect):
+                    self.game.dashboard.selected_button = button
+                    button.on_tapped()
 
     @staticmethod
     def is_on_surface(coords: tuple[float, float], surface: tuple[float, float, float, float]) -> bool:

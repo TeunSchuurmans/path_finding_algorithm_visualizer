@@ -10,8 +10,8 @@ class Game:
     def __init__(self) -> None:
         self.screen: pg.Surface = pg.display.set_mode(RES)
         self.clock: pg.time.Clock = pg.time.Clock()
-        self.input_handler: InputHandler = InputHandler(self)
         pg.display.set_caption("Pathfinding visualizer")
+        self.input_handler: InputHandler = InputHandler(self)
         self.grid: Grid = Grid(self)
         self.dashboard = Dashboard(self)
 

@@ -25,4 +25,5 @@ STATE_COLORS: dict[str, tuple[int, int, int]] = {
     'start': (0, 255, 0),
     'end': (255, 0, 0),
     'border': (0, 0, 0),
+    'visited': (0, 0, 255),
 }

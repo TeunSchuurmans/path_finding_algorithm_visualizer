@@ -10,7 +10,8 @@ class Tile:
         self.pos = self.x, self.y = pos
         self.grid = grid
         self.state: str = 'empty'
-        self.prev_state: str = 'unassigned'
+        self.prev_state: str = self.state
+        self.draw()
 
     @property
     def color(self) -> tuple[int, int, int]:
