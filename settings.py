@@ -9,11 +9,15 @@ FPS: float = 144
 # grid and tile settings
 GRID_HEIGHT: float = HEIGHT * 0.85
 GRID_WIDTH: float = WIDTH
+GRID_RES: tuple[float, float] = GRID_WIDTH, GRID_HEIGHT
 NUM_ROWS: int = 30
-
 TILE_SIZE: int = floor(GRID_HEIGHT / NUM_ROWS)
 NUM_COLUMNS: int = ceil(GRID_WIDTH / TILE_SIZE)
 
+# dashboard settings
+DASHBOARD_HEIGHT: float = HEIGHT - GRID_HEIGHT
+DASHBOARD_WIDTH: float = WIDTH
+DASHBOARD_RES: tuple[float, float] = DASHBOARD_WIDTH, DASHBOARD_HEIGHT
 
 # color settings
 STATE_COLORS: dict[str, tuple[int, int, int]] = {

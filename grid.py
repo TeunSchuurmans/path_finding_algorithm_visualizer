@@ -1,5 +1,5 @@
 from tile import Tile
-from settings import NUM_ROWS, NUM_COLUMNS, RES, TILE_SIZE
+from settings import NUM_ROWS, NUM_COLUMNS, GRID_RES, TILE_SIZE
 from pygame import Surface
 
 
@@ -7,7 +7,7 @@ class Grid:
     def __init__(self, game) -> None:
         self.game = game
         self.tiles: dict[tuple[int, int], Tile] = {}
-        self.surface: Surface = Surface(RES)
+        self.surface: Surface = Surface(GRID_RES)
         self.start: tuple[int, int] = (-1, -1)
         self.end: tuple[int, int] = (-1, -1)
         self.init_tiles()

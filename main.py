@@ -1,25 +1,28 @@
 import sys
 import pygame as pg
-from typing import Callable
+from dashboard import Dashboard
 from input_handler import InputHandler
 from settings import RES, FPS
 from grid import Grid
 
 
 class Game:
-    def __init__(self):
+    def __init__(self) -> None:
         self.screen: pg.Surface = pg.display.set_mode(RES)
         self.clock: pg.time.Clock = pg.time.Clock()
         self.input_handler: InputHandler = InputHandler(self)
         pg.display.set_caption("Pathfinding visualizer")
         self.grid: Grid = Grid(self)
+        self.dashboard = Dashboard(self)
 
     def draw(self) -> None:
         self.grid.draw()
+        self.dashboard.draw()
         pg.display.flip()
 
     def update(self) -> None:
         self.grid.update()
+        self.dashboard.update()
 
     def main_loop(self) -> None:
         while True:

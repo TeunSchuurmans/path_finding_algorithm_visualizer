@@ -33,6 +33,10 @@ class Tile:
         self.prev_state = self.state
 
     def on_tapped(self, state: str) -> None:
+        if self.state == 'start':
+            self.grid.start = (-1, -1)
+        elif self.state == 'end':
+            self.grid.end = (-1, -1)
         self.change_state(state)
         if state == 'start':
             if self.grid.start != (-1, -1):
