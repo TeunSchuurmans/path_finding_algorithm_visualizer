@@ -1,5 +1,5 @@
 from pygame import Surface
-from settings import DASHBOARD_RES, GRID_HEIGHT
+from settings import DASHBOARD_RES, GRID_HEIGHT, STATE_COLORS
 from button import Button
 
 
@@ -8,10 +8,10 @@ class Dashboard:
         self.game = game
         self.surface: Surface = Surface(DASHBOARD_RES)
         self.buttons: list[Button] = [
-            Button(self, (10, 10, 25, 25), (0, 255, 0), lambda: setattr(self, 'state', 'start')),
-            Button(self, (100, 10, 25, 25), (50, 50, 50), lambda: setattr(self, 'state', 'border')),
-            Button(self, (200, 10, 25, 25), (255, 0, 0), lambda: setattr(self, 'state', 'end')),
-            Button(self, (300, 10, 25, 25), (200, 200, 200), lambda: setattr(self, 'state', 'empty')),
+            Button(self, (10, 10, 25, 25), STATE_COLORS['start'], lambda: setattr(self, 'state', 'start')),
+            Button(self, (100, 10, 25, 25), STATE_COLORS['border'], lambda: setattr(self, 'state', 'border')),
+            Button(self, (200, 10, 25, 25), STATE_COLORS['end'], lambda: setattr(self, 'state', 'end')),
+            Button(self, (300, 10, 25, 25), STATE_COLORS['empty'], lambda: setattr(self, 'state', 'empty')),
         ]
         self.selected_button: Button = None
         self.state = 'empty'
