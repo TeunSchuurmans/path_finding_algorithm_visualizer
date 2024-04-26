@@ -28,17 +28,11 @@ class Tile:
         draw.rect(self.grid.surface, border_color, tile_rect, border_width)
 
     def change_state(self, state: str) -> None:
-        self.state = state
-
-    def update_prev_state(self) -> None:
-        self.prev_state = self.state
-
-    def on_tapped(self, state: str) -> None:
         if self.state == 'start':
             self.grid.start = (-1, -1)
         elif self.state == 'end':
             self.grid.end = (-1, -1)
-        self.change_state(state)
+        self.state = state
         if state == 'start':
             if self.grid.start != (-1, -1):
                 self.grid.tiles[self.grid.start].state = 'empty'
@@ -47,3 +41,9 @@ class Tile:
             if self.grid.end != (-1, -1):
                 self.grid.tiles[self.grid.end].state = 'empty'
             self.grid.end = (self.x // TILE_SIZE, self.y // TILE_SIZE)
+
+    def update_prev_state(self) -> None:
+        self.prev_state = self.state
+
+    def on_tapped(self, state: str) -> None:
+        self.change_state(state)

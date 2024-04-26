@@ -23,8 +23,6 @@ class Button:
         self.color: tuple[int, int, int] = color
         self.func: Callable = func
 
-
-
     def draw(self) -> None:
         draw.rect(self.dashboard.surface, self.color, self.rect)
 

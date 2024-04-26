@@ -1,11 +1,13 @@
 from tile import Tile
 from settings import NUM_ROWS, NUM_COLUMNS, GRID_RES, TILE_SIZE
 from pygame import Surface
+from pathfinding import PathFinder
 
 
 class Grid:
     def __init__(self, game) -> None:
         self.game = game
+        self.path_finder = PathFinder(self)
         self.tiles: dict[tuple[int, int], Tile] = {}
         self.surface: Surface = Surface(GRID_RES)
         self.start: tuple[int, int] = (-1, -1)
