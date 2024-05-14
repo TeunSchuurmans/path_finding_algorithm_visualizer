@@ -1,7 +1,7 @@
 from time import sleep, time
 from pygame import display
 from tile import Tile
-from typing import Callable, Any
+from typing import Callable
 
 
 class PathFinder:
@@ -10,11 +10,18 @@ class PathFinder:
         self.algorithms: list[Callable] = [self.dijkstra, self.a_star]
         self.selected_algorithm: Callable = self.algorithms[0]
 
-    def path_finding_algorithm(self, function: Callable) -> Callable:
-        def wrapper() -> None:
+    @staticmethod
+    def path_finding_algorithm(function: Callable) -> Callable:
+        """
+        Decorator to add functionality to all the pathfinding algorithms and measure the time taken to execute them
+        :param function:
+        :return:
+        """
+
+        def wrapper(self) -> None:
             self.clear_visited_tiles()
             start_time: float = time()
-            function()
+            function(self)
             end_time: float = time()
             duration: float = end_time - start_time
             print(f'{function.__name__} took {duration:.2f} seconds')
@@ -35,6 +42,11 @@ class PathFinder:
                 tile.change_state('empty')
 
     def visit_tile(self, tile: Tile) -> None:
+        """
+        Change the state of the tile to visited and update the grid
+        :param tile:
+        :return:
+        """
         tile.change_state('visited')
         self.grid.update()
         self.grid.draw()
