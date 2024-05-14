@@ -10,26 +10,26 @@ class Label:
         :param color:
         :param pos:
         """
-        self.text: str = text
+        self._text: str = text
         self.color: tuple[int, int, int] = color
         self.pos = self.x, self.y = pos
         self.font = font.SysFont('Arial', 24)
 
     @property
-    def text_surface(self) -> Surface:
+    def surface(self) -> Surface:
         """
         Get the text surface.
         :return:
         """
-        return self.font.render(self.text, True, self.color)
+        return self.font.render(self._text, True, self.color)
 
     @property
-    def text_rect(self) -> Rect | RectType:
+    def rect(self) -> Rect:
         """
         Get the rectangle of the text surface.
         :return:
         """
-        return self.text_surface.get_rect(center=(self.x, self.y))
+        return Rect(self.pos, self.surface.get_size())
 
     def update_text(self, text: str) -> None:
         """
@@ -37,4 +37,4 @@ class Label:
         :param text:
         :return:
         """
-        self.text = text
+        self._text = text

@@ -1,38 +1,49 @@
 from typing import Callable
-from pygame import draw
+from pygame import Surface, Rect
 
 
 class Button:
     def __init__(
             self,
-            dashboard,
             rect: tuple[int, int, int, int],
             color: tuple[int, int, int],
             func: Callable) -> None:
         """
-        :param dashboard: the parent Dashboard object
         :param rect: the position and dimensions of the button
-        :param color: the color of the button
+        :param color: the _color of the button
         :param func: the function to call when the button is tapped
         """
 
-        self.dashboard = dashboard
-        self.rect = rect
-        self.pos = self.x, self.y = rect[:2]
-        self.res = self.width, self.height = rect[2:]
-        self.color: tuple[int, int, int] = color
-        self.func: Callable = func
+        self._pos = self.x, self.y = rect[:2]
+        self._res = self.width, self.height = rect[2:]
+        self._rect = Rect(self._pos, self._res)
+        self._color: tuple[int, int, int] = color
+        self._surface = Surface(self._res)
+        self.surface.fill(self._color)
+        self._func: Callable = func
+        self.is_selected: bool = False
 
-    def draw(self) -> None:
-        draw.rect(self.dashboard.surface, self.color, self.rect)
+    @property
+    def rect(self) -> Rect:
+        return self._rect
 
-        if self.dashboard.selected_button == self:
-            border_color: tuple[int, int, int] = (0, 0, 0)
-            border_width: int = 2
-            draw.rect(self.dashboard.surface, border_color, self.rect, border_width)
+    @property
+    def surface(self) -> Surface:
+        surface = Surface(self._res)
+        surface.fill(self._color)
+        return surface
 
-    def update(self) -> None:
-        pass
+    def resize(self, width: int, height: int) -> None:
+        self.width, self.height = width, height
+
+    def reposition(self, x: int, y: int) -> None:
+        self._pos = x, y
+
+    def change_color(self, color: tuple[int, int, int]) -> None:
+        self._color = color
+
+    def change_func(self, func: Callable) -> None:
+        self._func = func
 
     def on_tapped(self) -> None:
-        self.func()
+        self._func()
