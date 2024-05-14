@@ -15,7 +15,13 @@ class Dashboard:
             Button((300, 10, 25, 25), STATE_COLORS['empty'], lambda: setattr(self, 'state', 'empty')),
             Button((400, 10, 75, 25), STATE_COLORS['visited'], lambda: self.game.grid.path_finder.selected_algorithm(self.game.grid.path_finder)),
         ]
-        self.labels: list[Label] = []
+        self.labels: list[Label] = [
+            Label('start', (255, 255, 255), (40, 10)),
+            Label('border', (255, 255, 255), (130, 10)),
+            Label('end', (255, 255, 255), (230, 10)),
+            Label('empty', (255, 255, 255), (330, 10)),
+            Label('find path', (255, 255, 255), (485, 10)),
+        ]
         self.child_surfaces: list[any] = [*self.buttons, *self.labels]
         self.selected_button: Button | None = None
         self.state = 'empty'

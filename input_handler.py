@@ -38,7 +38,7 @@ class InputHandler:
         elif self.is_on_surface(button_down_position, dashboard_surface):
             relative_position: tuple[float, float] = (button_down_position[0] - dashboard_surface[0], button_down_position[1] - dashboard_surface[1])
             for button in self.game.dashboard.buttons:
-                if self.is_on_surface(relative_position, button._rect):
+                if self.is_on_surface(relative_position, button.rect):
                     self.game.dashboard.selected_button = button
                     button.on_tapped()
 

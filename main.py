@@ -11,6 +11,7 @@ class Game:
         self.screen: pg.Surface = pg.display.set_mode(RES)
         self.clock: pg.time.Clock = pg.time.Clock()
         pg.display.set_caption("Pathfinding visualizer")
+        pg.font.init()
         self.input_handler: InputHandler = InputHandler(self)
         self.grid: Grid = Grid(self)
         self.dashboard = Dashboard(self)
