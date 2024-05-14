@@ -14,7 +14,7 @@ class Dashboard:
             Button(self, (300, 10, 25, 25), STATE_COLORS['empty'], lambda: setattr(self, 'state', 'empty')),
             Button(self, (400, 10, 75, 25), STATE_COLORS['visited'], self.game.grid.path_finder.selected_algorithm),
         ]
-        self.selected_button: Button = None
+        self.selected_button: Button = self.buttons[0]
         self.state = 'empty'
 
     def draw(self) -> None:
