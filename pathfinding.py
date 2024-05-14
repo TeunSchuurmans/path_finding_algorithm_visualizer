@@ -5,9 +5,9 @@ from typing import Callable
 
 
 class PathFinder:
-    def __init__(self, grid) -> None:
+    def __init__(self, grid, algorithms: list[Callable]) -> None:
         self.grid = grid
-        self.algorithms: list[Callable] = [self.dijkstra, self.a_star]
+        self.algorithms: list[Callable] = algorithms
         self.selected_algorithm: Callable = self.algorithms[0]
 
     @staticmethod
@@ -28,14 +28,6 @@ class PathFinder:
 
         return wrapper
 
-    @path_finding_algorithm
-    def dijkstra(self) -> None:
-        pass
-
-    @path_finding_algorithm
-    def a_star(self) -> None:
-        pass
-
     def clear_visited_tiles(self) -> None:
         for tile in self.grid.tiles.values():
             if tile.state == 'visited':
@@ -43,7 +35,7 @@ class PathFinder:
 
     def visit_tile(self, tile: Tile) -> None:
         """
-        Change the state of the tile to visited and update the grid
+        Change the state of the tile to visited and update the grid so that the change is reflected on the screen.
         :param tile:
         :return:
         """
@@ -52,3 +44,13 @@ class PathFinder:
         self.grid.draw()
         display.flip()
         sleep(0.1)
+
+
+@PathFinder.path_finding_algorithm
+def dijkstra(pathfinder: PathFinder) -> None:
+    pass
+
+
+@PathFinder.path_finding_algorithm
+def a_star(pathfinder: PathFinder) -> None:
+    pass
