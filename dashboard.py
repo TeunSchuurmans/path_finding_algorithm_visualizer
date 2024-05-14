@@ -1,7 +1,7 @@
 from pygame import Surface
 from settings import DASHBOARD_RES, GRID_HEIGHT, STATE_COLORS
 from button import Button
-
+from label import Label
 
 class Dashboard:
     def __init__(self, game) -> None:
@@ -14,6 +14,7 @@ class Dashboard:
             Button(self, (300, 10, 25, 25), STATE_COLORS['empty'], lambda: setattr(self, 'state', 'empty')),
             Button(self, (400, 10, 75, 25), STATE_COLORS['visited'], lambda: self.game.grid.path_finder.selected_algorithm(self.game.grid.path_finder)),
         ]
+        self.labels: list[Label] = []
         self.selected_button: Button = None
         self.state = 'empty'
 

@@ -48,9 +48,17 @@ class PathFinder:
 
 @PathFinder.path_finding_algorithm
 def dijkstra(pathfinder: PathFinder) -> None:
-    pass
+    """
+    Dijkstra's algorithm to find the shortest path between two points.
+    :param pathfinder:
+    :return:
+    """
 
 
 @PathFinder.path_finding_algorithm
 def a_star(pathfinder: PathFinder) -> None:
-    pass
+    """
+    A* algorithm to find the shortest path between two points.
+    :param pathfinder:
+    :return:
+    """
