@@ -22,7 +22,6 @@ class Game:
 
     def update(self) -> None:
         self.grid.update()
-        self.dashboard.update()
 
     def main_loop(self) -> None:
         while True:

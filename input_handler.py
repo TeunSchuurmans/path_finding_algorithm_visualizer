@@ -38,17 +38,17 @@ class InputHandler:
         elif self.is_on_surface(button_down_position, dashboard_surface):
             relative_position: tuple[float, float] = (button_down_position[0] - dashboard_surface[0], button_down_position[1] - dashboard_surface[1])
             for button in self.game.dashboard.buttons:
-                if self.is_on_surface(relative_position, button.rect):
+                if self.is_on_surface(relative_position, button._rect):
                     self.game.dashboard.selected_button = button
                     button.on_tapped()
 
     @staticmethod
     def is_on_surface(coords: tuple[float, float], surface: tuple[float, float, float, float]) -> bool:
         """
-        Check if the given coordinates are within the given surface.
+        Check if the given coordinates are within the given _surface.
         :param coords: the coordinates to check
-        :param surface: the surface to check against
-        :return: True if the coordinates are within the surface, False otherwise
+        :param surface: the _surface to check against
+        :return: True if the coordinates are within the _surface, False otherwise
         """
         x, y = coords
         surface_x, surface_y, surface_width, surface_height = surface

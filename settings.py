@@ -19,7 +19,7 @@ DASHBOARD_HEIGHT: float = HEIGHT - GRID_HEIGHT
 DASHBOARD_WIDTH: float = WIDTH
 DASHBOARD_RES: tuple[float, float] = DASHBOARD_WIDTH, DASHBOARD_HEIGHT
 
-# color settings
+# _color settings
 STATE_COLORS: dict[str, tuple[int, int, int]] = {
     'empty': (255, 255, 255),
     'start': (0, 255, 0),
