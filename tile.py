@@ -28,6 +28,11 @@ class Tile:
         draw.rect(self.grid.surface, border_color, tile_rect, border_width)
 
     def change_state(self, state: str) -> None:
+        """
+        Change the state of the tile.
+        :param state:
+        :return:
+        """
         if self.state == 'start':
             self.grid.start = (-1, -1)
         elif self.state == 'end':
