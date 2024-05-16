@@ -90,17 +90,22 @@ def dijkstra(pathfinder: PathFinder) -> None:
         return None
 
     while not found and possible:
-        print(len(visited_tiles))
+        # if no path is found, exit the loop
         if len(visited_tiles) == 0:
             possible = False
             print('No path found')
+
         for index in list(visited_tiles.keys()):
 
+            # get the neighbors of the current tile
             neighbors: dict[tuple[int, int], Tile] = pathfinder.get_neighbors(index)
 
-            visitable_neighbors = {neighbor_index: neighbor for neighbor_index, neighbor in neighbors.items() if neighbor.state != 'visited' and neighbor.state != 'border'}
+            # get the neighbors that are not visited or borders
+            visitable_neighbors = {neighbor_index: neighbor for neighbor_index, neighbor in neighbors.items() if neighbor.state != 'visited' and neighbor.state != 'border' and neighbor.state != 'idle'}
 
+            # no need to check its neighbors if all of them are visited or borders
             if len(visitable_neighbors) == 0:
+                visited_tiles[index].change_state('idle')
                 del visited_tiles[index]
             else:
                 for neighbor_index, visitable_neighbor in visitable_neighbors.items():
@@ -110,7 +115,7 @@ def dijkstra(pathfinder: PathFinder) -> None:
                     elif visitable_neighbor.state == 'empty':
                         pathfinder.visit_tile(visitable_neighbor)
                         visited_tiles[neighbor_index] = visitable_neighbor
-                        sleep(0.05)
+                        # sleep(0.05)
 
 
 @PathFinder.path_finding_algorithm

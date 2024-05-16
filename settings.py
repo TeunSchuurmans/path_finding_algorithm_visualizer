@@ -10,7 +10,7 @@ FPS: float = 144
 GRID_HEIGHT: float = HEIGHT * 0.85
 GRID_WIDTH: float = WIDTH
 GRID_RES: tuple[float, float] = GRID_WIDTH, GRID_HEIGHT
-NUM_ROWS: int = 30
+NUM_ROWS: int = 40
 TILE_SIZE: int = floor(GRID_HEIGHT / NUM_ROWS)
 NUM_COLUMNS: int = ceil(GRID_WIDTH / TILE_SIZE)
 
@@ -26,4 +26,5 @@ STATE_COLORS: dict[str, tuple[int, int, int]] = {
     'end': (255, 0, 0),
     'border': (50, 50, 50),
     'visited': (0, 0, 255),
+    'idle': (255, 255, 0),
 }
